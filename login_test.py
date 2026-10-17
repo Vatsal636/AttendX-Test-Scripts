@@ -22,3 +22,12 @@ def test_invalid_login():
     msg = driver.find_element(By.ID, "error").text
     assert "Invalid" in msg
     driver.quit()
+
+def test_empty_password():
+    driver = webdriver.Chrome()
+    driver.get(BASE_URL)
+    driver.find_element(By.ID, "username").send_keys("teacher01")
+    driver.find_element(By.ID, "loginBtn").click()
+    msg = driver.find_element(By.ID, "error").text
+    assert "required" in msg
+    driver.quit()
